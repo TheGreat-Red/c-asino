@@ -1,9 +1,9 @@
 #include <iostream>
 #include <string>
 
-#include "authManager.h"
-#include "mainMenu.h"
-#include "../include/session.h" 
+#include "../include/authManager.h"
+#include "../include/mainMenu.h"
+#include "../include/session.h"
 
 int main()
 {

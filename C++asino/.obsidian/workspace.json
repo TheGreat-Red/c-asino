@@ -15,9 +15,9 @@
               "state": {
                 "file": "Program design.canvas",
                 "viewState": {
-                  "x": 9.84765625,
-                  "y": 10.15498046874994,
-                  "zoom": 0
+                  "x": 1118.917806226262,
+                  "y": 458.69322622820596,
+                  "zoom": -1.3866357393066062
                 }
               },
               "icon": "lucide-layout-dashboard",
@@ -39,20 +39,17 @@
             }
           },
           {
-            "id": "1dbfc23ac545a4f7",
+            "id": "a5612f522fe42b07",
             "type": "leaf",
             "state": {
-              "type": "canvas",
+              "type": "markdown",
               "state": {
-                "file": "Program design.canvas",
-                "viewState": {
-                  "x": -27,
-                  "y": -58.5234375,
-                  "zoom": 0.11057323495546967
-                }
+                "file": "Roles.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-layout-dashboard",
-              "title": "Program design"
+              "icon": "lucide-file",
+              "title": "Roles"
             }
           }
         ]
@@ -112,7 +109,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "right": {
     "id": "6d10a5b3d4073849",
@@ -200,9 +198,9 @@
   "active": "f6d618b312516564",
   "lastOpenFiles": [
     "Design goals.md",
+    "Roles.md",
     "Program design.canvas",
     "Timeline.md",
-    "Untitled.md",
     "Welcome.md"
   ]
 }

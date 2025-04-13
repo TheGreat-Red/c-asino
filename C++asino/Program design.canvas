@@ -1,1 +1,222 @@
-{}
+{
+  "edges": [
+    {
+      "fromNode": "cd11f4e9f23be978",
+      "fromSide": "bottom",
+      "id": "a545cc19d214dada",
+      "styleAttributes": {
+      },
+      "toNode": "cdc2a1b2fa4336dc",
+      "toSide": "top"
+    },
+    {
+      "fromNode": "cdc2a1b2fa4336dc",
+      "fromSide": "bottom",
+      "id": "5ce6443a28341643",
+      "styleAttributes": {
+      },
+      "toNode": "d971f3beaef9c182",
+      "toSide": "top"
+    },
+    {
+      "fromNode": "d971f3beaef9c182",
+      "fromSide": "bottom",
+      "id": "d5382424e81558f4",
+      "styleAttributes": {
+      },
+      "toNode": "821c0097bfd65a09",
+      "toSide": "top"
+    },
+    {
+      "fromNode": "821c0097bfd65a09",
+      "fromSide": "bottom",
+      "id": "93169158d1a2457f",
+      "styleAttributes": {
+      },
+      "toNode": "25e64edb6ce7bd86",
+      "toSide": "top"
+    },
+    {
+      "fromNode": "25e64edb6ce7bd86",
+      "fromSide": "bottom",
+      "id": "3ad139f94bd71df1",
+      "styleAttributes": {
+      },
+      "toNode": "fab3ca82a50a8000",
+      "toSide": "top"
+    },
+    {
+      "fromNode": "821c0097bfd65a09",
+      "fromSide": "bottom",
+      "id": "379f01a4012d1a68",
+      "styleAttributes": {
+      },
+      "toNode": "517b0fc1f3ed312a",
+      "toSide": "top"
+    },
+    {
+      "fromNode": "517b0fc1f3ed312a",
+      "fromSide": "bottom",
+      "id": "454dd97d9e4a1576",
+      "styleAttributes": {
+      },
+      "toNode": "18b4545de1dfd6e6",
+      "toSide": "top"
+    },
+    {
+      "fromNode": "346143eaa68c7db7",
+      "fromSide": "bottom",
+      "id": "ade70ccc07fa5f79",
+      "styleAttributes": {
+      },
+      "toNode": "536030bc88ec2798",
+      "toSide": "top"
+    }
+  ],
+  "nodes": [
+    {
+      "height": 1320,
+      "id": "cd86de6ea5ede035",
+      "label": "Player",
+      "type": "group",
+      "width": 1240,
+      "x": 1160,
+      "y": -120
+    },
+    {
+      "height": 1320,
+      "id": "536030bc88ec2798",
+      "label": "Main",
+      "type": "group",
+      "width": 1160,
+      "x": -480,
+      "y": -120
+    },
+    {
+      "height": 800,
+      "id": "9726de7020bf57ca",
+      "label": "Game 1",
+      "type": "group",
+      "width": 920,
+      "x": -480,
+      "y": 1440
+    },
+    {
+      "height": 60,
+      "id": "cd11f4e9f23be978",
+      "styleAttributes": {
+        "shape": "parallelogram",
+        "textAlign": "center"
+      },
+      "text": "### Read CSV user data",
+      "type": "text",
+      "width": 320,
+      "x": -75,
+      "y": 80
+    },
+    {
+      "color": "6",
+      "height": 60,
+      "id": "d971f3beaef9c182",
+      "styleAttributes": {
+        "textAlign": "center"
+      },
+      "text": "## Main menu",
+      "type": "text",
+      "width": 320,
+      "x": -75,
+      "y": 340
+    },
+    {
+      "height": 60,
+      "id": "cdc2a1b2fa4336dc",
+      "styleAttributes": {
+        "textAlign": "center"
+      },
+      "text": "### Print main menu text",
+      "type": "text",
+      "width": 260,
+      "x": -45,
+      "y": 200
+    },
+    {
+      "height": 60,
+      "id": "821c0097bfd65a09",
+      "styleAttributes": {
+        "shape": "parallelogram",
+        "textAlign": "center"
+      },
+      "text": "### User selection",
+      "type": "text",
+      "width": 260,
+      "x": -45,
+      "y": 480
+    },
+    {
+      "color": "6",
+      "height": 60,
+      "id": "fab3ca82a50a8000",
+      "styleAttributes": {
+        "shape": null,
+        "textAlign": "center"
+      },
+      "text": "## Bank",
+      "type": "text",
+      "width": 260,
+      "x": -45,
+      "y": 800
+    },
+    {
+      "color": "6",
+      "height": 60,
+      "id": "18b4545de1dfd6e6",
+      "styleAttributes": {
+        "shape": null,
+        "textAlign": "center"
+      },
+      "text": "## Player stats",
+      "type": "text",
+      "width": 260,
+      "x": -400,
+      "y": 800
+    },
+    {
+      "height": 60,
+      "id": "25e64edb6ce7bd86",
+      "styleAttributes": {
+        "textAlign": "center"
+      },
+      "text": "### Print balance info",
+      "type": "text",
+      "width": 260,
+      "x": -45,
+      "y": 660
+    },
+    {
+      "height": 60,
+      "id": "517b0fc1f3ed312a",
+      "styleAttributes": {
+        "textAlign": "center"
+      },
+      "text": "### Print player stats",
+      "type": "text",
+      "width": 260,
+      "x": -400,
+      "y": 660
+    },
+    {
+      "color": "4",
+      "height": 60,
+      "id": "346143eaa68c7db7",
+      "styleAttributes": {
+        "shape": "pill",
+        "textAlign": "center"
+      },
+      "text": "# Program start",
+      "type": "text",
+      "width": 250,
+      "x": -35,
+      "y": -460
+    }
+  ]
+}

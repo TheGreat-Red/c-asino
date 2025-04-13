@@ -7,8 +7,6 @@
 
 MainMenu::MainMenu(Session& s) : session(s) {}
 
-
-
 // Method/function definition outside the class
 void MainMenu::displayMenu()
 {
