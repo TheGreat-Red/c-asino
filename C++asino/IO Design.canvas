@@ -1,0 +1,39 @@
+{
+	"nodes":[
+		{"id":"379f4fd6e612fd46","type":"text","text":"Console I/O\n(std::cin/cout)","x":-80,"y":-60,"width":250,"height":60},
+		{"id":"4c7a5d8687a8e266","type":"text","text":"Program Logic\n(Auth) (Bank) (Game)","x":-80,"y":140,"width":250,"height":60},
+		{"id":"594fd814b4d30a0d","type":"text","text":"Session","x":-330,"y":336,"width":250,"height":60},
+		{"id":"3ecd001da394f594","type":"text","text":"USER\n(Keyboard Input)","x":-80,"y":-260,"width":250,"height":50},
+		{"id":"6448deff9787b8c1","type":"text","text":"users.csv file","x":90,"y":480,"width":250,"height":60},
+		{"id":"fde602ada70db3ff","type":"text","text":"Input Validation\nValid/Invalid","x":90,"y":336,"width":250,"height":60},
+		{"id":"b2c557981ca2fc2f","type":"text","text":"Error Output: \"Invalid input. Try again.\"","x":340,"y":140,"width":250,"height":60},
+		{"id":"64000ea0ded1efcd","type":"text","text":"User Input: [input]","x":686,"y":103,"width":250,"height":60},
+		{"id":"72a265e9ffc52f24","type":"text","text":"<_Enter bet amount:","x":686,"y":-40,"width":250,"height":60},
+		{"id":"748e9613b1a327f3","type":"text","text":"Example:","x":686,"y":-200,"width":250,"height":60},
+		{"id":"6f8a665206fa7caf","type":"text","text":"users.csv file","x":686,"y":240,"width":250,"height":60},
+		{"id":"5d5843a459547774","type":"text","text":"CSV/Menu Changes","x":90,"y":600,"width":250,"height":60},
+		{"id":"af44cf48987e1290","type":"text","text":"Invalid","x":1020,"y":240,"width":250,"height":60},
+		{"id":"9dfade3fffa2ef08","x":1020,"y":-40,"width":250,"height":60,"type":"text","text":"Error: Insufficient funds"},
+		{"id":"a507ca7ab3449573","x":686,"y":380,"width":250,"height":60,"type":"text","text":"Valid"},
+		{"id":"3cdf63ba5b4512c2","x":686,"y":520,"width":250,"height":60,"type":"text","text":"Continued Program Logic"}
+	],
+	"edges":[
+		{"id":"6e2c8cd1145f016e","fromNode":"3ecd001da394f594","fromSide":"bottom","toNode":"379f4fd6e612fd46","toSide":"top"},
+		{"id":"b0b2950fdf757bc7","fromNode":"379f4fd6e612fd46","fromSide":"bottom","toNode":"4c7a5d8687a8e266","toSide":"top"},
+		{"id":"e31ebb101556bab7","fromNode":"4c7a5d8687a8e266","fromSide":"bottom","toNode":"594fd814b4d30a0d","toSide":"top"},
+		{"id":"12d2c03f57b364fe","fromNode":"fde602ada70db3ff","fromSide":"bottom","toNode":"6448deff9787b8c1","toSide":"top"},
+		{"id":"782852b30a7b5a6e","fromNode":"4c7a5d8687a8e266","fromSide":"bottom","toNode":"fde602ada70db3ff","toSide":"top"},
+		{"id":"16f321c7d0d459ef","fromNode":"fde602ada70db3ff","fromSide":"right","toNode":"b2c557981ca2fc2f","toSide":"bottom"},
+		{"id":"e23982ed0c3b6866","fromNode":"b2c557981ca2fc2f","fromSide":"left","toNode":"4c7a5d8687a8e266","toSide":"right"},
+		{"id":"4a7de7b9e6719ee0","fromNode":"748e9613b1a327f3","fromSide":"bottom","toNode":"72a265e9ffc52f24","toSide":"top"},
+		{"id":"18489bff7448ee6d","fromNode":"72a265e9ffc52f24","fromSide":"bottom","toNode":"64000ea0ded1efcd","toSide":"top"},
+		{"id":"04fd275a92d6b062","fromNode":"6448deff9787b8c1","fromSide":"right","toNode":"b2c557981ca2fc2f","toSide":"bottom"},
+		{"id":"f42c7197af4e05d3","fromNode":"6448deff9787b8c1","fromSide":"bottom","toNode":"5d5843a459547774","toSide":"top"},
+		{"id":"4c48e021c636be2a","fromNode":"64000ea0ded1efcd","fromSide":"bottom","toNode":"6f8a665206fa7caf","toSide":"top"},
+		{"id":"02b14e4a497127e9","fromNode":"6f8a665206fa7caf","fromSide":"right","toNode":"af44cf48987e1290","toSide":"left"},
+		{"id":"4ca19e9e8a102342","fromNode":"af44cf48987e1290","fromSide":"top","toNode":"9dfade3fffa2ef08","toSide":"bottom"},
+		{"id":"db8a118c164b0215","fromNode":"9dfade3fffa2ef08","fromSide":"left","toNode":"72a265e9ffc52f24","toSide":"right"},
+		{"id":"f9ad839b21dda537","fromNode":"6f8a665206fa7caf","fromSide":"bottom","toNode":"a507ca7ab3449573","toSide":"top"},
+		{"id":"655a236ac9079293","fromNode":"a507ca7ab3449573","fromSide":"bottom","toNode":"3cdf63ba5b4512c2","toSide":"top"}
+	]
+}

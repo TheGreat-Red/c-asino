@@ -1,0 +1,13 @@
+#Ignore build files
+*.o
+*.exe
+*.out
+
+#Ignore folders
+obj/
+.vscode/
+cppasino_backup/
+
+# Ignore Misc stuff
+.DS_Store
+
