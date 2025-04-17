@@ -102,6 +102,24 @@
       "y": 1440
     },
     {
+      "height": 800,
+      "id": "2ceda0c06e0dc00a",
+      "label": "Poker",
+      "type": "group",
+      "width": 800,
+      "x": 680,
+      "y": 1440
+    },
+    {
+      "height": 300,
+      "id": "304752de5baaa99b",
+      "label": "Craps",
+      "type": "group",
+      "width": 300,
+      "x": 1720,
+      "y": 1440
+    },
+    {
       "height": 60,
       "id": "cd11f4e9f23be978",
       "styleAttributes": {
@@ -217,6 +235,17 @@
       "width": 250,
       "x": -35,
       "y": -460
+    },
+    {
+      "height": 60,
+      "id": "4a448b9917f01b07",
+      "styleAttributes": {
+      },
+      "text": "",
+      "type": "text",
+      "width": 260,
+      "x": 380,
+      "y": 6240
     }
   ]
 }
