@@ -13,6 +13,8 @@ public:
     void withdraw();
     void deposit();
     bool bet();
+    void addFunds(double amount);
+    void subtractFunds(double amount);
 
 private:
     Session& session;

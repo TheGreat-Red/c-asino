@@ -1,18 +1,18 @@
 #include <iostream>
 #include <string>
 
+#include "../include/session.h"
 #include "../include/gameManager.h"
 #include "../include/diceDuel.h"
 #include "../include/mainMenu.h"
+#include "../include/slotMachine.h"
+
 
 GameManager::GameManager(Session& s) : session(s) {}
 
 
 void GameManager::listGames()
-{
-
-
-   
+{   
     while (true)
     {
         std::string input;
@@ -22,9 +22,10 @@ void GameManager::listGames()
         std::cout<< R"(
         Available Games:
         1. Dice Duel
-        2. Game Two (Ends Program)
-        3. Game Three (Ends Program)
-        4. Back)"; std::cout<< std::endl;
+        2. Slots
+        3. Blackjack
+        4. Ride The Bus
+        5. Back)"; std::cout<< std::endl;
         getline(std::cin, input);
 
         try
@@ -36,16 +37,22 @@ void GameManager::listGames()
             }
             else if (stoi(input) == 2)
             {
+                slotMachine spin(session);
+                spin.start();
+                break;
+            }
+            else if (stoi(input) == 3)
+            {
                 std::cout<< "gameTwoclass method\n";
                 break;
     
             }
-            else if (stoi(input) == 3)
+            else if (stoi(input) == 4)
             {
                 std::cout<< "gameThreeclass method\n";
                 break;
             }
-            else if (stoi(input) == 4)
+            else if (stoi(input) == 5)
             {
                 break;
             }

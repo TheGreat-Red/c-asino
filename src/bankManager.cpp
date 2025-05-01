@@ -59,7 +59,37 @@ void Bank::bankScreen()
     }
 }
 
+void Bank::addFunds(double amount) {
+    auto users = loadUsersFromCSV("data/users.csv");
 
+    for (auto& user : users) {
+        if (user.username == session.username) {
+            user.balance += amount;
+            std::cout << "Funds added: " << amount << "\n";
+            break;
+        }
+    }
+
+    saveUsersToCSV(users, "data/users.csv");
+}
+
+void Bank::subtractFunds(double amount) {
+    auto users = loadUsersFromCSV("data/users.csv");
+
+    for (auto& user : users) {
+        if (user.username == session.username) {
+            if (user.balance >= amount) {
+                user.balance -= amount;
+                std::cout << "Funds subtracted: " << amount << "\n";
+            } else {
+                std::cout << "Insufficient funds to subtract " << amount << "\n";
+            }
+            break;
+        }
+    }
+
+    saveUsersToCSV(users, "data/users.csv");
+}
 
 double Bank::getBalance() {
     auto users = loadUsersFromCSV("data/users.csv");
@@ -207,6 +237,7 @@ bool Bank::bet()
         break;
 
     }
+    
 
     auto users = loadUsersFromCSV("data/users.csv");
     for (const auto& user : users) {
