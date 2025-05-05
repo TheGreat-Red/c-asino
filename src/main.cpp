@@ -4,12 +4,14 @@
 #include "../include/authManager.h"
 #include "../include/mainMenu.h"
 #include "../include/session.h"
+#include "../include/bankManager.h"
+
+Session session;                    
+AuthManager auth(session);   
+Bank bank(session); 
 
 int main()
 {
-    Session session;                    
-    AuthManager auth(session);       
-
     while (true)
     {
         if (!auth.authMenu())

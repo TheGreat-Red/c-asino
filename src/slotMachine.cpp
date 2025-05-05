@@ -5,18 +5,21 @@
 #include "../include/slotMachine.h"
 #include "../include/bankManager.h"
 
+extern Bank bank;
+extern Session session;
+
+slotMachine::slotMachine() {}
+
 const char symbols[] = {'@', '#', '%', '?', '&'};
 
-slotMachine::slotMachine(Session& s) : userSession(s) {}
 
 void slotMachine::start() {
     srand(static_cast<unsigned int>(time(0))); //Gets time to esnure comepletely random numbers
     std::string input;
     double betAmount;
 
-    Bank bank(userSession);  // works w/ session
 
-    std::cout << "Welcome to the Slot Machine, " << userSession.username << "!\n";
+    std::cout << "Welcome to the Slot Machine, " << session.username << "!\n";
 
     while (true) {
         std::cout << "\nYour current balance: " << bank.getBalance() << "\n";
@@ -29,15 +32,15 @@ void slotMachine::start() {
         }
 
         if (input.empty()) { //If user hits enter
-            std::cout << "Enter a bet amount between 100 and 500: ";
+            std::cout << "Enter a bet amount between 100 and 1000: ";
             std::getline(std::cin, input);
 
             try {
                 betAmount = std::stod(input);  
 
                 // Validate the bet amount
-                if (betAmount < 100 || betAmount > 500) {
-                    std::cout << "Bet amount must be between 100 and 500.\n";
+                if (betAmount < 100 || betAmount > 1000) {
+                    std::cout << "Bet amount must be between 100 and 1000.\n";
                     continue;  // Ask again for the bet if it's invalid
                 }
 

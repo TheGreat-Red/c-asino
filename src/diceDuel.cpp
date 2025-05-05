@@ -6,6 +6,8 @@
 #include "../include/gameManager.h"
 #include "../include/bankManager.h"
 
+extern Session session;
+extern Bank bank;
 
 diceDuel::diceDuel(Session& s) : session(s) {}
 
@@ -13,7 +15,6 @@ diceDuel::diceDuel(Session& s) : session(s) {}
 void diceDuel::start()
 {
     
-    Bank bank(session);
 
     std::cout<< R"(
         Welcome to Dice Duel!!!

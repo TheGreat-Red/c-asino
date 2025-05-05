@@ -6,6 +6,9 @@
 #include "../include/diceDuel.h"
 #include "../include/mainMenu.h"
 #include "../include/slotMachine.h"
+#include "../include/bankManager.h"
+#include "../include/blackjack.h"
+
 
 
 GameManager::GameManager(Session& s) : session(s) {}
@@ -24,8 +27,7 @@ void GameManager::listGames()
         1. Dice Duel
         2. Slots
         3. Blackjack
-        4. Ride The Bus
-        5. Back)"; std::cout<< std::endl;
+        4. Back)"; std::cout<< std::endl;
         getline(std::cin, input);
 
         try
@@ -37,22 +39,17 @@ void GameManager::listGames()
             }
             else if (stoi(input) == 2)
             {
-                slotMachine spin(session);
+                slotMachine spin;
                 spin.start();
                 break;
             }
             else if (stoi(input) == 3)
             {
-                std::cout<< "gameTwoclass method\n";
-                break;
+                blackjack game;
+                game.play();
     
             }
             else if (stoi(input) == 4)
-            {
-                std::cout<< "gameThreeclass method\n";
-                break;
-            }
-            else if (stoi(input) == 5)
             {
                 break;
             }

@@ -5,15 +5,9 @@
 #include <string>
 #include "../include/session.h"  
 #include "../include/bankManager.h"  
-
 class slotMachine {
 public:
-    //Reference to the user's session
-    Session& userSession;
-
-    //Constructor: Initializes userSession
-    slotMachine(Session& s);
-
+    slotMachine();
     void start();
 };
 
