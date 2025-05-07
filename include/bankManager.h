@@ -10,8 +10,8 @@ public:
     double getBalance();
     void win();
     void lose();
-    void withdraw();
-    void deposit();
+    void deposit(double amount);
+    void withdraw(double amount);    
     bool bet();
     void addFunds(double amount);
     void subtractFunds(double amount);

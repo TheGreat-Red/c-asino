@@ -29,16 +29,69 @@ int getValidatedInput(int min, int max) {
 //Bank/Stat Menu
 //Shows balance, wins/losses, and win ratio
 void displayBank(Session& session) {
-    cout << "\n====== 🏦 Bank & Stats ======\n";
-    cout << "💰 Balance: " << session.balance << " chips\n";
-    cout << "✅ Wins: " << session.wins << "\n";
-    cout << "❌ Losses: " << session.losses << "\n";
-    cout << fixed << setprecision(1);
-    cout << "📊 Win Ratio: " << session.getWinRatio() << "%\n";
-    cout << "\nPress ENTER to return...";
-    cin.ignore();
-    cin.get();
+    Bank bank(session);
+
+    while (true) {
+        cout << "\n====== 🏦 Bank & Stats ======\n";
+        cout << "💰 Balance: " << session.balance << " chips\n";
+        cout << "✅ Wins: " << session.wins << "\n";
+        cout << "❌ Losses: " << session.losses << "\n";
+        cout << fixed << setprecision(1);
+        cout << "📊 Win Ratio: " << session.getWinRatio() << "%\n";
+
+        cout << "\nOptions:\n";
+        cout << "1. Deposit Chips\n";
+        cout << "2. Withdraw Chips\n";
+        cout << "3. Return to Main Menu\n";
+        cout << "Enter your choice: ";
+
+        string choice;
+        getline(cin, choice);
+
+        if (choice == "1") {
+            cout << "Enter amount to deposit: ";
+            double amount;
+            if (!(cin >> amount)) {
+                cout << "Invalid input. Please enter a number.\n";
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                continue;
+            }
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            
+            if (amount <= 0) {
+                cout << "Deposit must be a positive number.\n";
+                continue;
+            }
+            if (amount > 100000) {
+                cout << "Maximum deposit is 100,000 chips.\n";
+                continue;
+            }
+            
+            bank.deposit(amount);
+            
+        }
+        else if (choice == "2") {
+            cout << "Enter amount to withdraw: ";
+            double amount;
+            if (!(cin >> amount)) {
+                cout << "Invalid input. Please enter a number.\n";
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                continue;
+            }
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            bank.withdraw(amount);
+        }
+        else if (choice == "3") {
+            break;
+        }
+        else {
+            cout << "Invalid choice. Try again.\n";
+        }
+    }
 }
+
 //Games Menu
 //It lets the user pick a game to play
 void displayGamesMenu(Session& session) {

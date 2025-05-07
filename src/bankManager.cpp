@@ -11,7 +11,7 @@ Bank::Bank(Session& s) : session(s) {}
 
 
 
-void Bank::bankScreen()
+/*void Bank::bankScreen()
 {
     while(true)
     {    
@@ -57,13 +57,14 @@ void Bank::bankScreen()
         }
     }
 }
-
+*/
 void Bank::addFunds(double amount) {
     auto users = loadUsersFromCSV("data/users.csv");
 
     for (auto& user : users) {
         if (user.username == session.username) {
             user.balance += amount;
+            session.balance = user.balance;
             std::cout << "Funds added: " << amount << "\n";
             break;
         }
@@ -79,6 +80,7 @@ void Bank::subtractFunds(double amount) {
         if (user.username == session.username) {
             if (user.balance >= amount) {
                 user.balance -= amount;
+                session.balance = user.balance;
                 std::cout << "Funds subtracted: " << amount << "\n";
             } else {
                 std::cout << "Insufficient funds to subtract " << amount << "\n";
@@ -101,34 +103,19 @@ double Bank::getBalance() {
     return -1;
 }
 
-void Bank::deposit()
-{
-    std::string amountStr;
-    std::cout << "How much would you like to deposit?\n";
-    getline(std::cin, amountStr);
-    
-    double amount;
-    try 
-    {
-        amount = std::stod(amountStr);
-        if (amount <= 0)
-        {
-            std::cout<< "Deposit must be a positive amount";
-            return;
-        }
-    }
-    catch (...)
-    {
-        std::cout<< "Invalid input. Please enter a number.\n";
+void Bank::deposit(double amount) {
+    if (amount <= 0) {
+        std::cout << "Deposit must be a positive amount\n";
         return;
     }
-    
+
     auto users = loadUsersFromCSV("data/users.csv");
 
     for (auto& user : users) {
         if (user.username == session.username) {
             user.balance += amount;
-            std::cout << "Deposit processed\n";
+            session.balance = user.balance;
+            std::cout << "Deposit of " << amount << " processed.\n";
             break;
         }
     }
@@ -136,28 +123,11 @@ void Bank::deposit()
     saveUsersToCSV(users, "data/users.csv");
 }
 
-void Bank::withdraw()
-{
-    std::string amountStr;
-    std::cout << "How much would you like to withdraw?\n";
-    getline(std::cin, amountStr);
-
-    double amount;
-    try
-    {
-        amount = std::stod(amountStr);
-        if (amount <= 0)
-        {
-            std::cout<< "Withddrawal must be a positive amount\n";
-            return;
-        } 
-    }
-    catch(...)
-    {
-        std::cout<< "Invalid input. Please enter a number";
+void Bank::withdraw(double amount) {
+    if (amount <= 0) {
+        std::cout << "Withdrawal must be a positive amount\n";
         return;
     }
-    
 
     auto users = loadUsersFromCSV("data/users.csv");
 
@@ -165,9 +135,10 @@ void Bank::withdraw()
         if (user.username == session.username) {
             if (user.balance >= amount) {
                 user.balance -= amount;
-                std::cout << "Withdrawal processed\n";
+                session.balance = user.balance;
+                std::cout << "Withdrawal of " << amount << " processed.\n";
             } else {
-                std::cout << "Insufficient funds\n";
+                std::cout << "Insufficient funds.\n";
             }
             break;
         }
@@ -178,12 +149,14 @@ void Bank::withdraw()
 
 
 
+
 void Bank::win()
 {
     auto users = loadUsersFromCSV("data/users.csv");
     for (auto& user : users) {
         if (user.username == session.username) {
             user.balance += currentWager;
+            session.balance = user.balance;
             std::cout << "Winnings added\n";
             break;
         }
@@ -198,6 +171,7 @@ void Bank::lose()
     for (auto& user : users) {
         if (user.username == session.username) {
             user.balance -= currentWager;
+            session.balance = user.balance;
             std::cout << "Wager lost of " << currentWager << "\n";
             break;
         }
