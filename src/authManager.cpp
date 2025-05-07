@@ -45,6 +45,14 @@ bool AuthManager::authMenu()
 
 bool AuthManager::login()
 {
+    const std::string filepath = "data/users.csv";
+
+
+    if (!std::filesystem::exists(filepath)) {
+        std::cout << "No user database found. Please register first.\n";
+        return false;
+    }
+
     std::string username, password;
     std::cout << "Enter your username: ";
     getline(std::cin, username);
@@ -56,7 +64,7 @@ bool AuthManager::login()
         return false;
     }
 
-    auto users = loadUsersFromCSV("data/users.csv");
+    auto users = loadUsersFromCSV(filepath);
 
     for (const auto& user : users)
     {
@@ -73,6 +81,7 @@ bool AuthManager::login()
     std::cout << "Login failed. Please try again.\n";
     return false;
 }
+
 
 bool AuthManager::createAccount()
 {
@@ -92,7 +101,8 @@ bool AuthManager::createAccount()
         return false;
     }
 
-    auto users = loadUsersFromCSV("data/users.csv");
+    const std::string filepath = "data/users.csv";
+    auto users = loadUsersFromCSV(filepath);
 
     for (const auto& user : users)
     {
@@ -103,13 +113,9 @@ bool AuthManager::createAccount()
         }
     }
 
-    UserRecord newUser;
-    newUser.username = username;
-    newUser.password = password;
-    newUser.balance = 100;
-
+    UserRecord newUser(username, password, 100.0);
     users.push_back(newUser);
-    saveUsersToCSV(users, "data/users.csv");
+    saveUsersToCSV(users, filepath);
 
     std::cout << "Account created. You are now logged in.\n";
     session.username = username;

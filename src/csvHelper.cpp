@@ -13,10 +13,14 @@ std::vector<UserRecord> loadUsersFromCSV(const std::string& filename) {
     std::vector<UserRecord> users;
     std::ifstream file(filename);
 
-    std::string line;
+    if (!file.is_open()) {
+        std::cerr << "User file not found. Starting with empty user list.\n";
+        return users;
+    }
 
-    getline(file, line);
-    
+    std::string line;
+    getline(file, line); 
+
     while (getline(file, line)) {
         std::stringstream ss(line);
         std::string user, pass, balanceStr;
@@ -35,9 +39,20 @@ std::vector<UserRecord> loadUsersFromCSV(const std::string& filename) {
 
 void saveUsersToCSV(const std::vector<UserRecord>& users, const std::string& filename) {
     std::filesystem::create_directories("data");
-    std::ofstream file(filename);
-    file << "username,password,balance\n";
 
+
+    bool fileExists = std::filesystem::exists(filename);
+    if (!fileExists) {
+        std::cout << "Creating new user file: " << filename << "\n";
+    }
+
+    std::ofstream file(filename);
+    if (!file.is_open()) {
+        std::cerr << "Failed to open file: " << filename << "\n";
+        return;
+    }
+
+    file << "username,password,balance\n";
     for (const auto& u : users) {
         file << u.username << "," << u.password << "," << u.balance << "\n";
     }
