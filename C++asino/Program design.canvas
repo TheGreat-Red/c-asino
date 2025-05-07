@@ -78,6 +78,8 @@
       "height": 1320,
       "id": "cd86de6ea5ede035",
       "label": "Player",
+      "styleAttributes": {
+      },
       "type": "group",
       "width": 1240,
       "x": 1160,
@@ -87,6 +89,8 @@
       "height": 1320,
       "id": "536030bc88ec2798",
       "label": "Main",
+      "styleAttributes": {
+      },
       "type": "group",
       "width": 1160,
       "x": -480,
@@ -96,6 +100,8 @@
       "height": 800,
       "id": "9726de7020bf57ca",
       "label": "Game 1",
+      "styleAttributes": {
+      },
       "type": "group",
       "width": 920,
       "x": -480,
@@ -105,6 +111,8 @@
       "height": 800,
       "id": "2ceda0c06e0dc00a",
       "label": "Poker",
+      "styleAttributes": {
+      },
       "type": "group",
       "width": 800,
       "x": 680,
@@ -114,6 +122,8 @@
       "height": 300,
       "id": "304752de5baaa99b",
       "label": "Craps",
+      "styleAttributes": {
+      },
       "type": "group",
       "width": 300,
       "x": 1720,
