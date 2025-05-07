@@ -3,7 +3,6 @@
 #include <string>
 
 #include "../include/diceDuel.h"
-#include "../include/gameManager.h"
 #include "../include/bankManager.h"
 
 extern Session session;
