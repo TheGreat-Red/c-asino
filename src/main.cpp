@@ -17,8 +17,8 @@ int main() {
         std::cout << "Login failed. Please try again.\n";
     }
 
-    Player player; 
-    displayMainMenu(player); 
+
+    displayMainMenu(session); 
 
     return 0;
 }

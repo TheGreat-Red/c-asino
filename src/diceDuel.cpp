@@ -85,11 +85,13 @@ void diceDuel::randomLogic(Bank& bank)
         if (dealerRoll > playerRoll)
         {
             std::cout << "Dealer wins!\n";
+            session.losses++;
             bank.lose();
         }
         else if (playerRoll > dealerRoll)
         {
             std::cout << "You win!\n";
+            session.wins++;
             bank.win();
         }
         else

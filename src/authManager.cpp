@@ -70,8 +70,12 @@ bool AuthManager::login()
     {
         if (user.username == username && user.password == password)
         {
-            session.username = username;
-            session.password = password;
+            session.username = user.username;
+            session.password = user.password;
+            session.balance = user.balance;
+            session.wins = user.wins;
+            session.losses = user.losses;
+            
 
             std::cout << "Access granted. Welcome " << username << "\n";
             return true;
@@ -113,13 +117,16 @@ bool AuthManager::createAccount()
         }
     }
 
-    UserRecord newUser(username, password, 100.0);
+    UserRecord newUser(username, password, 100.0, 0, 0);
     users.push_back(newUser);
     saveUsersToCSV(users, filepath);
 
     std::cout << "Account created. You are now logged in.\n";
     session.username = username;
     session.password = password;
+    session.balance = 100.0;
+    session.wins = 0;
+    session.losses = 0;    
 
     return true;
 }

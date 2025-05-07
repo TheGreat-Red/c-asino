@@ -157,8 +157,10 @@ void blackjack::play() { //calls game
     if (dealerTotal > 21 || playerTotal > dealerTotal) {
         std::cout << "You win!\n";
         bank.addFunds(betAmount * 2);
+        session.wins++;
     } else if (playerTotal < dealerTotal) {
         std::cout << "You lose.\n";
+        session.losses++;
     } else {
         std::cout << "It's a tie! Your bet is returned.\n";
         bank.addFunds(betAmount);

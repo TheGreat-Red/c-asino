@@ -8,13 +8,19 @@ struct Session {
     std::string password;
     double balance;
 
-    //blank session is created below
-    Session() : username(""), password(""), balance(0.0) {}
+    int wins = 0;
+    int losses = 0;
 
-    //creates a session with given values (user,pass,balance)
+    Session() : username(""), password(""), balance(0.0), wins(0), losses(0) {}
     Session(const std::string& user, const std::string& pass, double initialBalance = 0.0)
-        : username(user), password(pass), balance(initialBalance) {}
+        : username(user), password(pass), balance(initialBalance), wins(0), losses(0) {}
+
+    float getWinRatio() const {
+        int total = wins + losses;
+        return (total == 0) ? 0.0f : (float(wins) / total) * 100.0f;
+    }
 };
+
 
 
 #endif

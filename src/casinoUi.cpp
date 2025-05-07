@@ -7,6 +7,7 @@
 #include "../include/diceDuel.h"
 #include "../include/slotMachine.h"
 #include "../include/bankManager.h"
+#include "../include/csvHelper.h"
 
 using namespace std;
 
@@ -27,20 +28,20 @@ int getValidatedInput(int min, int max) {
 }
 //Bank/Stat Menu
 //Shows balance, wins/losses, and win ratio
-void displayBank(Player& player) {
+void displayBank(Session& session) {
     cout << "\n====== 🏦 Bank & Stats ======\n";
-    cout << "💰 Balance: " << player.balance << " chips\n";
-    cout << "✅ Wins: " << player.wins << "\n";
-    cout << "❌ Losses: " << player.losses << "\n";
+    cout << "💰 Balance: " << session.balance << " chips\n";
+    cout << "✅ Wins: " << session.wins << "\n";
+    cout << "❌ Losses: " << session.losses << "\n";
     cout << fixed << setprecision(1);
-    cout << "📊 Win Ratio: " << player.getWinRatio() << "%\n";
+    cout << "📊 Win Ratio: " << session.getWinRatio() << "%\n";
     cout << "\nPress ENTER to return...";
     cin.ignore();
     cin.get();
 }
 //Games Menu
 //It lets the user pick a game to play
-void displayGamesMenu(Player& player) {
+void displayGamesMenu(Session& session) {
     while (true) {
         cout << "\n====== 🎲 Games Menu ======\n";
         cout << "1. Blackjack\n";
@@ -78,12 +79,12 @@ void displayGamesMenu(Player& player) {
 
 //Main menu
 //The Main hub that links everything together
-void displayMainMenu(Player& player) {
+void displayMainMenu(Session& session) {
     while (true) {
         cout << "\n===============================\n";
         cout << "🎰  Welcome to C++asino!  🎰\n";
         cout << "===============================\n";
-        cout << "Chips: " << player.balance << "\n";
+        cout << "Chips: " << session.balance << "\n";
         cout << "1. Games\n";
         cout << "2. Bank / Stats\n";
         cout << "3. Quit\n";
@@ -91,15 +92,29 @@ void displayMainMenu(Player& player) {
         int choice = getValidatedInput(1, 3);
         switch (choice) {
             case 1:
-                displayGamesMenu(player);
+                displayGamesMenu(session);
                 break;
             case 2:
-                displayBank(player);
+                displayBank(session);
                 break;
-            case 3:
-                cout << "\nSaving data... 🗃️\n";
-                cout << "Thanks for playing!\n";
-                return; //Exits the program
+            case 3: {
+                std::cout << "\nSaving data... 🗃️\n";
+            
+                auto users = loadUsersFromCSV("data/users.csv");
+                for (auto& user : users) {
+                    if (user.username == session.username) {
+                        user.balance = session.balance;
+                        user.wins = session.wins;
+                        user.losses = session.losses;
+                        break;
+                    }
+                }
+                saveUsersToCSV(users, "data/users.csv");
+            
+                std::cout << "Thanks for playing!\n";
+                return;
+            }
+                                
         }
     }
 }

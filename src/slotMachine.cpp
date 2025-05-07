@@ -64,14 +64,17 @@ void slotMachine::start() {
                     bank.addFunds(winnings);
                     std::cout << "JACKPOT! You matched all three symbols!\n";
                     std::cout << "You won: " << winnings << "\n";
+                    session.wins++;
                 } else if (slot1 == slot2 || slot2 == slot3 || slot1 == slot3) {
                     // Win with two matching symbols
                     double winnings = betAmount * 2; //If 2 matching it doubles your bet
                     bank.addFunds(winnings);
                     std::cout << "Nice! You got two matching symbols!\n";
                     std::cout << "You won: " << winnings << "\n";
+                    session.wins++;
                 } else {
                     std::cout << "No match, better luck next time!\n";
+                    session.losses++;
                 }
 
                 // Show the updated balance
