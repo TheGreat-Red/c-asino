@@ -2,16 +2,10 @@
 #include <random>
 #include <string>
 
-#include "../include/diceDuel.h"
-#include "../include/bankManager.h"
+#include "../include/DiceDuel.h"
+#include "../include/AuthManager.h"
 
-extern Session session;
-extern Bank bank;
-
-diceDuel::diceDuel(Session& s) : session(s) {}
-
-
-void diceDuel::start()
+void DiceDuel::start()
 {
     
 
@@ -31,15 +25,14 @@ void diceDuel::start()
     while (true)
     {
         std::string input;
-        std::cout<< R"(
-        1. Start
-        2. Back)"; std::cout<< std::endl;
+        std::cout << "1. Start\n2. Back\n";
+
         getline(std::cin, input);
         try
         {
             if (stoi(input) == 1)
             {
-                randomLogic(bank); 
+                randomLogic(); 
             }
 
         
@@ -56,24 +49,39 @@ void diceDuel::start()
         {
             std::cout<< "Please enter a valid number";
         }
-        
-        
     }
-
+    
+    saveUsersToCSV(AuthManager::users, "users.csv");
 }
     
 
-void diceDuel::randomLogic(Bank& bank)
+void DiceDuel::randomLogic()
 {
     std::mt19937 gen(std::random_device{}());
     std::uniform_int_distribution<> dist(1, 6);
 
     while (true)
     {
-        if (!bank.bet())
+        std::string wagerStr;
+        int wager;
+
+        while (true)
         {
-            std::cout << "Invalid wager. Returning to menu.\n";
-            return;
+            std::cout << "Enter wager: \n";
+            getline(std::cin, wagerStr);
+
+            try
+            {
+                wager = stoi(wagerStr);
+                if (wager <= 0) 
+                    throw;
+            }
+            catch(const std::exception& e)
+            {
+                std::cout<< "Invalid input. Please enter a positive number";
+                continue;
+            }
+            break;
         }
 
         int dealerRoll = dist(gen);
@@ -85,17 +93,19 @@ void diceDuel::randomLogic(Bank& bank)
         if (dealerRoll > playerRoll)
         {
             std::cout << "Dealer wins!\n";
-            bank.lose();
+            AuthManager::currentUser.balance -= wager;
         }
         else if (playerRoll > dealerRoll)
         {
             std::cout << "You win!\n";
-            bank.win();
+            AuthManager::currentUser.balance += wager;
         }
         else
         {
             std::cout << "It's a tie!\n";
         }
+
+        // saveUsersToCSV()
 
         while (true)
         {
@@ -106,13 +116,9 @@ void diceDuel::randomLogic(Bank& bank)
             {
                 break; 
             }
-            else if (input == "n")
-            {
-                return; 
-            }
             else
             {
-                std::cout << "Invalid input. Please enter 'y' or 'n'.\n";
+                return;
             }
         }
     }

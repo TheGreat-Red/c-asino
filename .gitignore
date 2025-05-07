@@ -3,14 +3,13 @@
 *.exe
 *.out
 *.csv
+
 #Ignore folders
 obj/
 data/
 .vscode/
 
-
 # Ignore Misc stuff
-.DS_Store
-
 casino
 .DS_Store
+*.gch

@@ -1,13 +1,12 @@
-#include "../include/blackjack.h"
-#include "../include/bankManager.h"
 #include <iostream>
 #include <cstdlib> //needed for rand()
 #include <ctime> //needed for time()
 #include <string>
 #include <limits> //std::numeric_limits
 
-extern Session session;
-extern Bank bank;
+#include "../include/Blackjack.h"
+#include "../include/AuthManager.h"
+
 
 const int DECK_SIZE = 52;
 std::string deck[DECK_SIZE];
@@ -66,7 +65,7 @@ void showHand(std::string hand[], int count, const std::string& who) {
 
 //MAIN GAME LOGIC BELOW
 
-void blackjack::play() { //calls game
+void Blackjack::play() { //calls game
     shuffleDeck(); //shuffles deck
     std::string playerHand[10], dealerHand[10]; //'max' number of cards
     int playerCount = 0, dealerCount = 0; //starts with 0 cards total 
@@ -76,7 +75,7 @@ void blackjack::play() { //calls game
 
     // Get the player's bet
     while (true) {
-        std::cout << "\nYour current balance: $" << bank.getBalance() << "\n";
+        std::cout << "\nYour current balance: $" << AuthManager::currentUser.balance << "\n";
         std::cout << "Enter a bet amount between 100 and 1000: ";
     
         std::getline(std::cin, input);  // always read full line
@@ -93,12 +92,12 @@ void blackjack::play() { //calls game
                 continue;
             }
     
-            if (bank.getBalance() < betAmount) {
+            if (AuthManager::currentUser.balance < betAmount) {
                 std::cout << "Insufficient funds.\n";
                 continue;
             }
     
-            bank.subtractFunds(betAmount);
+            AuthManager::currentUser.balance -= betAmount;
             break;
     
         } catch (...) {
@@ -107,10 +106,6 @@ void blackjack::play() { //calls game
             // only flush if getline failed (rare, but safe to include)
         }
     }
-    
-    
-    
-
 
     //Initial cards are dealt here, 2 player 2 dealer
     playerHand[playerCount++] = drawCard();
@@ -156,11 +151,13 @@ void blackjack::play() { //calls game
     //decide who wins using the variable I created above
     if (dealerTotal > 21 || playerTotal > dealerTotal) {
         std::cout << "You win!\n";
-        bank.addFunds(betAmount * 2);
+        AuthManager::currentUser.balance += betAmount * 2;
     } else if (playerTotal < dealerTotal) {
         std::cout << "You lose.\n";
     } else {
         std::cout << "It's a tie! Your bet is returned.\n";
-        bank.addFunds(betAmount);
+        AuthManager::currentUser.balance += betAmount;
     }
+
+    saveUsersToCSV(AuthManager::users, "users.csv");
 }

@@ -4,19 +4,15 @@
 #include <string>
 #include <vector>
 
-#include "../include/authManager.h"
+#include "../include/AuthManager.h"
 #include "../include/csvHelper.h"
 
-AuthManager::AuthManager(Session& s) : session(s) {}
 
 bool AuthManager::authMenu()
 {
     while (true)
     {
-        std::cout << R"(
-        1. Login
-        2. Register
-        3. Exit)";
+        std::cout << "1. Login\n2. Register\n3. Exit";
         std::cout << std::endl;
 
         std::string input;
@@ -47,31 +43,27 @@ bool AuthManager::login()
 {
     const std::string filepath = "data/users.csv";
 
-
     if (!std::filesystem::exists(filepath)) {
         std::cout << "No user database found. Please register first.\n";
         return false;
     }
 
-    std::string username, password;
+    std::string username;
     std::cout << "Enter your username: ";
     getline(std::cin, username);
-    std::cout << "Enter your password: ";
-    getline(std::cin, password);
 
-    if (username.empty() || password.empty()) {
-        std::cout << "Username or password cannot be empty.\n";
+    if (username.empty()) {
+        std::cout << "Username cannot be empty.\n";
         return false;
     }
 
-    auto users = loadUsersFromCSV(filepath);
+    users = loadUsersFromCSV(filepath);
 
     for (const auto& user : users)
     {
-        if (user.username == username && user.password == password)
+        if (user.username == username)
         {
-            session.username = username;
-            session.password = password;
+            currentUser = user;
 
             std::cout << "Access granted. Welcome " << username << "\n";
             return true;
@@ -85,24 +77,22 @@ bool AuthManager::login()
 
 bool AuthManager::createAccount()
 {
-    std::string username, password;
+    std::string username;
     std::cout << "Enter new username: ";
     getline(std::cin, username);
-    std::cout << "Enter new password: ";
-    getline(std::cin, password);
 
-    if (username.empty() || password.empty()) {
-        std::cout << "Username or password cannot be empty.\n";
+    if (username.empty()) {
+        std::cout << "Username cannot be empty.\n";
         return false;
     }
 
-    if (username.find(',') != std::string::npos || password.find(',') != std::string::npos) {
-        std::cout << "Commas are not allowed in username/password.\n";
+    if (username.find(',') != std::string::npos) {
+        std::cout << "Commas are not allowed in username.\n";
         return false;
     }
 
     const std::string filepath = "data/users.csv";
-    auto users = loadUsersFromCSV(filepath);
+    users = loadUsersFromCSV(filepath);
 
     for (const auto& user : users)
     {
@@ -113,13 +103,12 @@ bool AuthManager::createAccount()
         }
     }
 
-    UserRecord newUser(username, password, 100.0);
+    UserRecord newUser(username, 100, 0, 0);
     users.push_back(newUser);
     saveUsersToCSV(users, filepath);
+    currentUser = users.back();
 
     std::cout << "Account created. You are now logged in.\n";
-    session.username = username;
-    session.password = password;
 
     return true;
 }

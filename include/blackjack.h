@@ -1,9 +1,7 @@
 #ifndef BLACKJACK_H
 #define BLACKJACK_H
 
-#include "bankManager.h"
-
-class blackjack {
+class Blackjack {
 public:
     void play();
 };

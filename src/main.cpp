@@ -1,24 +1,20 @@
 #include <iostream>
 #include <string>
 
-#include "../include/authManager.h"
-#include "../include/session.h"
-#include "../include/bankManager.h"
-#include "../include/casinoUi.h"
+#include "../include/AuthManager.h"
+#include "../include/casinoUI.h"
 
-Session session;
-AuthManager auth(session);
-Bank bank(session);
 
-int main() {
+
+int main()
+{
+
     while (true) {
-        if (!auth.authMenu()) return 0;
-        if (!session.username.empty()) break;
+        if (!AuthManager::authMenu()) return 0;
         std::cout << "Login failed. Please try again.\n";
     }
 
-    Player player; 
-    displayMainMenu(player); 
+    displayMainMenu(); 
 
     return 0;
 }

@@ -1,13 +1,9 @@
 #ifndef SLOT_MACHINE_H
 #define SLOT_MACHINE_H
 
-#include <iostream>
-#include <string>
-#include "../include/session.h"  
-#include "../include/bankManager.h"  
-class slotMachine {
+class SlotMachine {
 public:
-    slotMachine();
+    SlotMachine();
     void start();
 };
 

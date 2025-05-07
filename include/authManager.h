@@ -1,20 +1,17 @@
 #ifndef AUTH_MANAGER_H
 #define AUTH_MANAGER_H
 
-#include "session.h"         // Ensure this defines struct/class Session
+#include <vector>
+
 #include "csvHelper.h"       // For UserRecord
 
 class AuthManager {
-public:
-    AuthManager(Session& s);
-    bool authMenu();
-    bool login();
-    bool createAccount();
-
-
-
-private:
-    Session& session;
+    public:
+        static bool authMenu();
+        static bool login();
+        static bool createAccount();
+        static std::vector<UserRecord>& users;
+        static UserRecord& currentUser;
 };
 
 #endif

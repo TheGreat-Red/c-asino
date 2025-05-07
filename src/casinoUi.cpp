@@ -2,15 +2,14 @@
 #include <limits>
 #include <iomanip>
 
-#include "../include/casinoUi.h"
-#include "../include/blackjack.h"
-#include "../include/diceDuel.h"
-#include "../include/slotMachine.h"
-#include "../include/bankManager.h"
+#include "../include/casinoUI.h"
+#include "../include/csvHelper.h"
+#include "../include/AuthManager.h"
+#include "../include/Blackjack.h"
+#include "../include/DiceDuel.h"
+#include "../include/SlotMachine.h"
 
 using namespace std;
-
-extern Session session;
 
 //Input Validation
 // Ensures input is a number between min and max
@@ -27,49 +26,52 @@ int getValidatedInput(int min, int max) {
 }
 //Bank/Stat Menu
 //Shows balance, wins/losses, and win ratio
-void displayBank(Player& player) {
-    cout << "\n====== 🏦 Bank & Stats ======\n";
-    cout << "💰 Balance: " << player.balance << " chips\n";
-    cout << "✅ Wins: " << player.wins << "\n";
-    cout << "❌ Losses: " << player.losses << "\n";
+void displayBank() {
+    auto user = AuthManager::currentUser;
+    cout << "\n====== 👤 Player Balance & Stats ======\n";
+    cout << "💰 Balance: " << user.balance << " chips\n";
+    cout << "✅ Wins: " << user.wins << "\n";
+    cout << "❌ Losses: " << user.losses << "\n";
     cout << fixed << setprecision(1);
-    cout << "📊 Win Ratio: " << player.getWinRatio() << "%\n";
+    cout << "📊 Win Ratio: " << user.getWinRatio() << "%\n";
     cout << "\nPress ENTER to return...";
     cin.ignore();
     cin.get();
 }
 //Games Menu
 //It lets the user pick a game to play
-void displayGamesMenu(Player& player) {
+void displayGamesMenu() {
     while (true) {
         cout << "\n====== 🎲 Games Menu ======\n";
         cout << "1. Blackjack\n";
         cout << "2. Dice Duel\n";
         cout << "3. Slots\n";
-        
-        cout << "4. Back to Main Menu\n";
+        cout << "0. Back to Main Menu\n";
 
         int choice = getValidatedInput(1, 4);
         switch (choice) {
             case 1: {
                 cout << "🔔 Launching Blackjack...\n";
-                blackjack bjack;
+                Blackjack bjack;
                 bjack.play();
                 break;
             }
+
             case 2:{
                 cout << "🔔 Launching Dice Duel...\n";
-                diceDuel duel(session);
+                DiceDuel duel;
                 duel.start();
                 break;
             }
+
             case 3: {
                 cout << "🔔 Launching Slots...\n";
-                slotMachine slots;
+                SlotMachine slots;
                 slots.start();
                 break;
             }
-            case 4: {
+
+            case 0: {
                 return;
             }
         }
@@ -78,12 +80,12 @@ void displayGamesMenu(Player& player) {
 
 //Main menu
 //The Main hub that links everything together
-void displayMainMenu(Player& player) {
+void displayMainMenu() {
     while (true) {
         cout << "\n===============================\n";
         cout << "🎰  Welcome to C++asino!  🎰\n";
         cout << "===============================\n";
-        cout << "Chips: " << player.balance << "\n";
+        cout << "Chips: " << AuthManager::currentUser.balance << "\n";
         cout << "1. Games\n";
         cout << "2. Bank / Stats\n";
         cout << "3. Quit\n";
@@ -91,10 +93,10 @@ void displayMainMenu(Player& player) {
         int choice = getValidatedInput(1, 3);
         switch (choice) {
             case 1:
-                displayGamesMenu(player);
+                displayGamesMenu();
                 break;
             case 2:
-                displayBank(player);
+                displayBank();
                 break;
             case 3:
                 cout << "\nSaving data... 🗃️\n";

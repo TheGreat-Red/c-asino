@@ -1,21 +1,12 @@
 #ifndef DICE_DUEL_H
 #define DICE_DUEL_H
 
-#include "session.h"
-#include "bankManager.h"
-
-class diceDuel {
+class DiceDuel {
     public:
-        diceDuel(Session& s);     
+        DiceDuel();     
         void start();
-        void randomLogic(Bank& bank);
-    
-    private:
-        Session& session;         
+        void randomLogic();
     };
-    
-
-
 
 #endif
 

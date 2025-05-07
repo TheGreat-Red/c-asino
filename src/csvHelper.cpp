@@ -1,48 +1,42 @@
-#include "../include/csvHelper.h"
 #include <fstream>
 #include <sstream>
 #include <iostream>
 #include <filesystem>
 
-UserRecord::UserRecord() : username(""), password(""), balance(0.0) {}
+#include "../include/csvHelper.h"
 
-UserRecord::UserRecord(const std::string& user, const std::string& pass, double bal)
-    : username(user), password(pass), balance(bal) {}
+UserRecord::UserRecord(const std::string& user, int bal, int win, int loss)
+    : username(user), balance(bal), wins(win), losses(loss) {}
 
 std::vector<UserRecord> loadUsersFromCSV(const std::string& filename) {
     std::vector<UserRecord> users;
     std::ifstream file(filename);
 
-    if (!file.is_open()) {
+    if (file.bad()) {
         std::cerr << "User file not found. Starting with empty user list.\n";
         return users;
     }
 
-    std::string line;
+    std::string line, user, balanceStr, winStr, lossStr;
     getline(file, line); 
 
     while (getline(file, line)) {
         std::stringstream ss(line);
-        std::string user, pass, balanceStr;
         getline(ss, user, ',');
-        getline(ss, pass, ',');
-        getline(ss, balanceStr);
-        try {
-            double bal = std::stod(balanceStr);
-            users.emplace_back(user, pass, bal);
-        } catch (...) {
-            std::cerr << "Invalid balance on line: " << line << "\n";
-        }
+        getline(ss, balanceStr, ',');
+        getline(ss, winStr, ',');
+        getline(ss, lossStr, ',');
+        
+        UserRecord newUser(user, std::stoi(balanceStr), std::stoi(winStr), std::stoi(lossStr));
+        users.push_back(newUser);
     }
     return users;
 }
 
 void saveUsersToCSV(const std::vector<UserRecord>& users, const std::string& filename) {
     std::filesystem::create_directories("data");
-
-
-    bool fileExists = std::filesystem::exists(filename);
-    if (!fileExists) {
+    
+    if (!std::filesystem::exists(filename)) {
         std::cout << "Creating new user file: " << filename << "\n";
     }
 
@@ -52,8 +46,8 @@ void saveUsersToCSV(const std::vector<UserRecord>& users, const std::string& fil
         return;
     }
 
-    file << "username,password,balance\n";
+    file << "username,balance,wins,losses\n";
     for (const auto& u : users) {
-        file << u.username << "," << u.password << "," << u.balance << "\n";
+        file << u.username << "," << u.balance << "," << u.wins << "," << u.losses << '\n';
     }
 }
