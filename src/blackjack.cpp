@@ -4,6 +4,7 @@
 #include <cstdlib> //needed for rand()
 #include <ctime> //needed for time()
 #include <string>
+#include <limits> //std::numeric_limits
 
 extern Session session;
 extern Bank bank;
@@ -73,28 +74,42 @@ void blackjack::play() { //calls game
     std::string input;
     double betAmount = 0;
 
-    //Gets the player's bet
+    // Get the player's bet
     while (true) {
         std::cout << "\nYour current balance: $" << bank.getBalance() << "\n";
         std::cout << "Enter a bet amount between 100 and 1000: ";
-        std::getline(std::cin, input);
-
-        try { //ensures bet amounts are valid
+    
+        std::getline(std::cin, input);  // always read full line
+    
+        try {
+            // Remove any leading/trailing whitespace (optional safety)
+            input.erase(0, input.find_first_not_of(" \t\r\n"));
+            input.erase(input.find_last_not_of(" \t\r\n") + 1);
+    
             betAmount = std::stod(input);
+    
             if (betAmount < 100 || betAmount > 1000) {
                 std::cout << "Bet must be between 100 and 1000.\n";
                 continue;
             }
+    
             if (bank.getBalance() < betAmount) {
                 std::cout << "Insufficient funds.\n";
                 continue;
             }
+    
             bank.subtractFunds(betAmount);
             break;
+    
         } catch (...) {
             std::cout << "Invalid input.\n";
+            std::cin.clear(); // just in case
+            // only flush if getline failed (rare, but safe to include)
         }
     }
+    
+    
+    
 
 
     //Initial cards are dealt here, 2 player 2 dealer
