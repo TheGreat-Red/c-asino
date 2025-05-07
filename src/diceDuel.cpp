@@ -2,8 +2,8 @@
 #include <random>
 #include <string>
 
-#include "../include/DiceDuel.h"
-#include "../include/AuthManager.h"
+#include "../include/diceDuel.h"
+#include "../include/authManager.h"
 
 void DiceDuel::start()
 {

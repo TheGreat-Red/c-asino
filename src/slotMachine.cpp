@@ -3,8 +3,8 @@
 #include <cstdlib>
 #include <ctime>
 
-#include "../include/SlotMachine.h"
-#include "../include/AuthManager.h"
+#include "../include/slotMachine.h"
+#include "../include/authManager.h"
 
 SlotMachine::SlotMachine() {}
 

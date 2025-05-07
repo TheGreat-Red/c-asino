@@ -4,8 +4,8 @@
 #include <string>
 #include <limits> //std::numeric_limits
 
-#include "../include/Blackjack.h"
-#include "../include/AuthManager.h"
+#include "../include/blackjack.h"
+#include "../include/authManager.h"
 
 
 const int DECK_SIZE = 52;

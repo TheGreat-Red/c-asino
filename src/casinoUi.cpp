@@ -2,12 +2,12 @@
 #include <limits>
 #include <iomanip>
 
-#include "../include/casinoUI.h"
+#include "../include/casinoUi.h"
 #include "../include/csvHelper.h"
-#include "../include/AuthManager.h"
-#include "../include/Blackjack.h"
-#include "../include/DiceDuel.h"
-#include "../include/SlotMachine.h"
+#include "../include/authManager.h"
+#include "../include/blackjack.h"
+#include "../include/diceDuel.h"
+#include "../include/slotMachine.h"
 
 using namespace std;
 

@@ -12,4 +12,4 @@ data/
 # Ignore Misc stuff
 casino
 .DS_Store
-*.gch
+

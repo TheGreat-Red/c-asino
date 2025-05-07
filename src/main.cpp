@@ -1,8 +1,8 @@
 #include <iostream>
 #include <string>
 
-#include "../include/AuthManager.h"
-#include "../include/casinoUI.h"
+#include "../include/authManager.h"
+#include "../include/casinoUi.h"
 
 
 
