@@ -2,6 +2,7 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
+#include <filesystem>
 
 UserRecord::UserRecord() : username(""), password(""), balance(0.0) {}
 
@@ -33,6 +34,7 @@ std::vector<UserRecord> loadUsersFromCSV(const std::string& filename) {
 }
 
 void saveUsersToCSV(const std::vector<UserRecord>& users, const std::string& filename) {
+    std::filesystem::create_directories("data");
     std::ofstream file(filename);
     file << "username,password,balance\n";
 
