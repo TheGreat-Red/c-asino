@@ -1,0 +1,32 @@
+Instructions on How to Run the Project
+--------------------------------------
+
+1. Open a terminal and navigate to the root directory of the project.
+
+2. Compile the program by either:
+   - Running the Makefile with:
+     make
+   - Or manually compiling the source files using your C++ compiler.
+
+3. Run the compiled program with:
+   ./casino   (on Linux/macOS)
+   .\casino   (on Windows)
+
+4. Follow the on-screen prompts to log in, register, and start playing.
+
+Code Organization
+-----------------
+
+The code is modular and organized into separate files based on functionality:
+
+- `main.cpp`: Entry point of the program. Handles login and launches the main menu.
+- `casinoUi.cpp`: Handles the main UI logic, including menu navigation and input validation.
+- `authManager.cpp`: Manages user login and account creation.
+- `bankManager.cpp`: Handles balance management, deposits, withdrawals, and wagers.
+- `blackjack.cpp`: Contains the full logic for Blackjack gameplay.
+- `diceDuel.cpp`: Contains the logic for Dice Duel gameplay.
+- `slotMachine.cpp`: Contains the logic for Slot Machine gameplay.
+- `csvHelper.cpp`: Handles reading from and writing to the user CSV file.
+
+All headers are located in the `include/` directory.
+User data is stored in `data/users.csv`.

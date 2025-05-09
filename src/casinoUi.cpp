@@ -31,6 +31,7 @@ int getValidatedInput(int min, int max) {
 void displayBank(Session& session) {
     Bank bank(session);
 
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
     while (true) {
         cout << "\n====== 🏦 Bank & Stats ======\n";
         cout << "💰 Balance: " << session.balance << " chips\n";
@@ -46,6 +47,7 @@ void displayBank(Session& session) {
         cout << "Enter your choice: ";
 
         string choice;
+        
         getline(cin, choice);
 
         if (choice == "1") {
@@ -100,7 +102,6 @@ void displayGamesMenu(Session& session) {
         cout << "1. Blackjack\n";
         cout << "2. Dice Duel\n";
         cout << "3. Slots\n";
-        
         cout << "4. Back to Main Menu\n";
 
         int choice = getValidatedInput(1, 4);
